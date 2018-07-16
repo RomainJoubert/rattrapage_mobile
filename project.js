@@ -191,15 +191,39 @@ let projectList =
         }
     ];
 
-
-$(document).ready(function() {
+function research(projectList, recherche) {
+    let tab = [];
     for (let i = 0; i < projectList.length; i++) {
-        $(".table").append("<tr class='row" + i + "'></tr>");
-        for (let j = 0; j < 1; j++) {
-            $(".row" + i).append("<td>" + projectList[i].picture + "</td>");
-            $(".row" + i).append("<td>" + projectList[i].name + "</td>");
-            $(".row" + i).append("<td>" + projectList[i].isActive + "</td>");
-            $(".row" + i).append("<td>" + projectList[i].creation + "</td>");
+        if (projectList[i].name.startsWith(recherche)) {
+            tab.push(projectList[i]);
         }
     }
+    for (let j = 0; j < tab.length; j++) {
+        $(".table").append("<tr class='row" + j + "'></tr>");
+        $(".row" + j).append("<td>" + tab[j].picture + "</td>");
+        $(".row" + j).append("<td>" + tab[j].name + "</td>");
+        $(".row" + j).append("<td>" + tab[j].isActive + "</td>");
+        $(".row" + j).append("<td>" + tab[j].creation + "</td>");
+    }
+};
+// console.log(research(projectList, "POLARAX"));
+
+$(document).ready(function () {
+    for (let i = 0; i < projectList.length; i++) {
+        $(".table").append("<tr class='row" + i + "'></tr>");
+        $(".row" + i).append("<td>" + projectList[i].picture + "</td>");
+        $(".row" + i).append("<td>" + projectList[i].name + "</td>");
+        $(".row" + i).append("<td>" + projectList[i].isActive + "</td>");
+        $(".row" + i).append("<td>" + projectList[i].creation + "</td>");
+    }
+
+    //récupère la saisie dans l'input
+$("input").keyup(function () {
+   let cherche = $(this).val().toUpperCase();
+   $("tbody").empty();
+   // console.log(cherche);
+   research(projectList, cherche);
+
+
+})
 });
