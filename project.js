@@ -189,4 +189,17 @@ let projectList =
             "name": "PUSHCART",
             "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
         }
-    ]
+    ];
+
+
+$(document).ready(function() {
+    for (let i = 0; i < projectList.length; i++) {
+        $(".table").append("<tr class='row" + i + "'></tr>");
+        for (let j = 0; j < 1; j++) {
+            $(".row" + i).append("<td>" + projectList[i].picture + "</td>");
+            $(".row" + i).append("<td>" + projectList[i].name + "</td>");
+            $(".row" + i).append("<td>" + projectList[i].isActive + "</td>");
+            $(".row" + i).append("<td>" + projectList[i].creation + "</td>");
+        }
+    }
+});
