@@ -205,6 +205,7 @@ function research(projectList, recherche) {
         $(".row" + j).append("<td>" + tab[j].isActive + "</td>");
         $(".row" + j).append("<td>" + tab[j].creation + "</td>");
     }
+    return tab;
 };
 // console.log(research(projectList, "POLARAX"));
 
