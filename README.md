@@ -53,7 +53,7 @@ Une fois que tout fonctionne, faites un premier commit ( vous aurez sûrement be
 
 ### Récupération des données et affichage simple.
 
-- [ ] Créez dans votre fichier Javascript une variable dont la valeur correspond au tableau suivant :
+- [X] Créez dans votre fichier Javascript une variable dont la valeur correspond au tableau suivant :
 
 <details>
  <summary>Exemple de données ( cliquer pour dérouler )</summary>
@@ -254,7 +254,7 @@ Une fois que tout fonctionne, faites un premier commit ( vous aurez sûrement be
 </details>
 
 Est ce que c'est mieux de déclarer la variable avec `let` ou `const` 🤔 ?
-*Votre réponse :*
+*Votre réponse :* let
 
 ## Afficher dans une table bootstrap avec JQuery.
 
@@ -265,7 +265,7 @@ Nous voulons afficher une table avec sur chaque ligne les informations d'un proj
 - Le statut ( actif ou non ).
 - La date de création.
 
-- [ ] Ajoutez dans votre document html une table avec une en tête comprenant ces 4 colonnes.
+- [X] Ajoutez dans votre document html une table avec une en tête comprenant ces 4 colonnes.
 
 - [ ] Enfin, affichez autant de lignes dans la table qu'il y a d'éléments dans votre tableau.
 
