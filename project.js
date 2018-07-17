@@ -191,6 +191,22 @@ let projectList =
         }
     ];
 
+let newTableWithDate = convert(projectList);
+
+//fonction qui dessine le tableau
+function drawTable(tab) {
+
+    for (let i = 0; i < tab.length; i++) {
+        $(".table").append("<tr class='row" + i + "'></tr>");
+        $(".row" + i).append("<td>" + tab[i].picture + "</td>");
+        $(".row" + i).append("<td>" + tab[i].name + "</td>");
+        $(".row" + i).append("<td>" + tab[i].isActive + "</td>");
+        $(".row" + i).append("<td>" + tab[i].creation + "</td>");
+    }
+    return tab;
+}
+
+//fonction pour rechercher un projet
 function research(projectList, recherche) {
     let tab = [];
     for (let i = 0; i < projectList.length; i++) {
@@ -207,24 +223,108 @@ function research(projectList, recherche) {
     }
     return tab;
 };
-// console.log(research(projectList, "POLARAX"));
+
+//fonction pour convertir les dates au bon format
+function convert(tab) {
+    let date;
+    let result = tab;
+    for (let i = 0; i < result.length; i++) {
+        date = new Date(result[i].creation);
+        result[i].creation = date;
+    }
+    return result;
+};
+
+//fonction qui trie le tableau par date
+function sortDate(tab) {
+    for (let i = 0; i < tab.length; i++) {
+        tab.sort(function (date1, date2) {
+            if (date1.creation > date2.creation) {
+                return 1;
+            } else if (date1.creation < date2.creation) {
+                return -1;
+            } else if (date1.creation === date2.creation) {
+                return 0;
+            }
+        });
+    }
+    ;
+    return tab;
+};
+
+//fonction qui trie le tableau par date
+function sortDate(tab) {
+    for (let i = 0; i < tab.length; i++) {
+        tab.sort(function (date1, date2) {
+            if (date1.creation > date2.creation) {
+                return 1;
+            } else if (date1.creation < date2.creation) {
+                return -1;
+            } else if (date1.creation === date2.creation) {
+                return 0;
+            }
+        });
+    }
+    ;
+    return tab;
+};
+
+//fonction qui trie le tableau par nom de projet
+function sortName(tab1) {
+    for (let i = 0; i < tab1.length; i++) {
+        tab1.sort(function (nom1, nom2) {
+            if (nom1.name > nom2.name) {
+                return 1;
+            } else if (nom1.name < nom2.name) {
+                return -1;
+            } else if (nom1.name === nom2.name) {
+                return 0;
+            }
+        });
+    }
+    ;
+    return tab1;
+};
 
 $(document).ready(function () {
-    for (let i = 0; i < projectList.length; i++) {
-        $(".table").append("<tr class='row" + i + "'></tr>");
-        $(".row" + i).append("<td>" + projectList[i].picture + "</td>");
-        $(".row" + i).append("<td>" + projectList[i].name + "</td>");
-        $(".row" + i).append("<td>" + projectList[i].isActive + "</td>");
-        $(".row" + i).append("<td>" + projectList[i].creation + "</td>");
-    }
+    //dessine le tableau
+drawTable(projectList);
 
-    //récupère la saisie dans l'input
-$("input").keyup(function () {
-   let cherche = $(this).val().toUpperCase();
-   $("tbody").empty();
-   // console.log(cherche);
-   research(projectList, cherche);
+    //récupère la saisie dans l'input de recherche
+    $("input").keyup(function () {
+        let cherche = $(this).val().toUpperCase();
+        $("tbody").empty();
+        // console.log(cherche);
+        research(newTableWithDate, cherche);
+    })
 
+    //tri le tableau par date croissant
+    $("#up").on('click', function () {
+        $("tbody").empty();
+        sortDate(newTableWithDate);
+        drawTable(newTableWithDate);
 
 })
-});
+    //tri le tableau par date décroissant
+    $("#down").on('click', function () {
+        $("tbody").empty();
+        sortDate(newTableWithDate).reverse();
+        drawTable(newTableWithDate);
+
+    })
+    //tri le tableau par nom croissant
+    $("#nameUp").on('click', function () {
+        $("tbody").empty();
+        sortName(newTableWithDate);
+        drawTable(newTableWithDate);
+
+    })
+    //tri le tableau par nom décroissant
+    $("#nameDown").on('click', function () {
+        $("tbody").empty();
+        sortName(newTableWithDate).reverse();
+        drawTable(newTableWithDate);
+
+    })
+})
+;
