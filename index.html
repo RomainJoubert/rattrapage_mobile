@@ -12,6 +12,7 @@
 <body>
 <div class="container">
     <input id="research" placeholder="Rechercher par nom"/>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nouveau projet</button>
     <table class="table table-striped">
         <thead class = "thead-light">
         <tr>
@@ -24,6 +25,42 @@
         <tbody>
         </tbody>
     </table>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouveau projet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="projectName" class="col-form-label">Nom du projet</label>
+                        <input id = "projectName"type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDate" class="col-form-label">Date de création : </label>
+                        <input id = "projectDate" type="date" class="form-control" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectImage" class="col-form-label">Image : </label>
+                        <input id = "projectImage" ype="text" class="form-control" value="http://placehold.it/32x32">
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="isActive" unchecked>
+                        <label id = "projectCheck" class="custom-control-label" for="isActive">Projet actif ?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button id="createProject" type="submit" class="btn btn-primary" data-dismiss="modal">Créer projet</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

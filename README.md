@@ -313,7 +313,7 @@ Voici un exemple d'interface à laquelle vous [pourriez parvenir](http://recordi
 
 ## Ajouter un nouveau projet.
 
-- [ ] Faites un formulaire d'ajout d'un projet, je vous propose pour cela d'utiliser les [fenêtres modales de bootstrap](https://getbootstrap.com/docs/4.0/components/modal/) afin d'avoir le formulaire dans une modale.
+- [X] Faites un formulaire d'ajout d'un projet, je vous propose pour cela d'utiliser les [fenêtres modales de bootstrap](https://getbootstrap.com/docs/4.0/components/modal/) afin d'avoir le formulaire dans une modale.
 
 Voici un exemple de résultats :
 

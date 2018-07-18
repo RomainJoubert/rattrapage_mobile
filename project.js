@@ -195,10 +195,9 @@ let newTableWithDate = convert(projectList);
 
 //fonction qui dessine le tableau
 function drawTable(tab) {
-
     for (let i = 0; i < tab.length; i++) {
         $(".table").append("<tr class='row" + i + "'></tr>");
-        $(".row" + i).append("<td>" + tab[i].picture + "</td>");
+        $(".row" + i).append("<td>" + "<img src = " + tab[i].picture + ">" + "</td>");
         $(".row" + i).append("<td>" + tab[i].name + "</td>");
         $(".row" + i).append("<td>" + tab[i].isActive + "</td>");
         $(".row" + i).append("<td>" + tab[i].creation + "</td>");
@@ -235,22 +234,6 @@ function convert(tab) {
     return result;
 };
 
-//fonction qui trie le tableau par date
-function sortDate(tab) {
-    for (let i = 0; i < tab.length; i++) {
-        tab.sort(function (date1, date2) {
-            if (date1.creation > date2.creation) {
-                return 1;
-            } else if (date1.creation < date2.creation) {
-                return -1;
-            } else if (date1.creation === date2.creation) {
-                return 0;
-            }
-        });
-    }
-    ;
-    return tab;
-};
 
 //fonction qui trie le tableau par date
 function sortDate(tab) {
@@ -286,12 +269,23 @@ function sortName(tab1) {
     return tab1;
 };
 
+//fonction pour créer un nouveau projet
+function createProject() {
+    let name = $("#projectName").val().toUpperCase();
+    let image = $("#projectImage").val();
+    let actif = $("#isActive").prop("checked");
+    let date = new Date($("#projectDate").val());
+
+    let ajoutProjet = {"name": name, "isActive": actif, "picture" : image, "creation": date };
+    return ajoutProjet;
+}
+
 $(document).ready(function () {
     //dessine le tableau
-drawTable(projectList);
+    drawTable(projectList);
 
     //récupère la saisie dans l'input de recherche
-    $("input").keyup(function () {
+    $("#research").keyup(function () {
         let cherche = $(this).val().toUpperCase();
         $("tbody").empty();
         // console.log(cherche);
@@ -304,7 +298,7 @@ drawTable(projectList);
         sortDate(newTableWithDate);
         drawTable(newTableWithDate);
 
-})
+    })
     //tri le tableau par date décroissant
     $("#down").on('click', function () {
         $("tbody").empty();
@@ -325,6 +319,16 @@ drawTable(projectList);
         sortName(newTableWithDate).reverse();
         drawTable(newTableWithDate);
 
+    })
+
+    //ajoute un nouveau projet
+    $("#createProject").on('click', function (){
+        let newProject = createProject();
+        $("tbody").empty();
+        newTableWithDate.push(newProject);
+        drawTable(newTableWithDate);
+
+        $("form")[0].reset();
     })
 })
 ;
